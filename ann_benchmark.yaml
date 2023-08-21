@@ -1,0 +1,82 @@
+float:
+  - name: nmslib
+    library: nmslib
+    method: [hnsw]
+    space: [cosinesimil,l2,l1]
+    run_groups:
+      K:
+        query_args: [[10,50,100,300,400,500,1000,2000,2500,3000]]
+
+  - name: hnswlib
+    library: hnswlib
+    method: [hnswlib]
+    space: [cosine,l2,ip]
+    run_groups:
+      K:
+        query_args: [[10,50,100,300,400,500,1000,2000,2500,3000]]
+      ef_construction:
+        query_args: [[10, 20, 40, 80, 120, 200, 400, 600, 800]]
+
+  - name: bruteforce blas
+    library: sklearn.neighbors
+    algorithm: [brute]
+    metric: [minkowski,euclidean,cosine,manhattan,cityblock]
+    run_groups:
+      K:
+        query_args: [[10,50,100,300,400,500,1000,2000,2500,3000]]
+
+  - name: balltree
+    library: sklearn.neighbors
+    metric: [minkowski,euclidean,l2,manhattan,cityblock]
+    run_groups:
+      K:
+        query_args: [[10,50,100,300,400,500,1000,2000,2500,3000]]
+      leaf_size:
+        query_args: [[10, 20, 40, 100, 200, 400, 1000]]
+
+  - name: kdtree
+    library: sklearn.neighbors
+    metric: [minkowski,euclidean,l2,manhattan,cityblock]
+    run_groups:
+      K:
+        query_args: [[10,50,100,300,400,500,1000,2000,2500,3000]]
+      leaf_size:
+        query_args: [[10, 20, 40, 100, 200, 400, 1000]]
+
+  - name: ckdtree
+    library: scipy.spatial
+    run_groups:
+      K:
+        query_args: [[10,50,100,300,400,500,1000,2000,2500,3000]]
+      leaf_size:
+        query_args: [[10, 20, 40, 100, 200, 400, 1000]]
+
+  - name: annoy
+    library: annoy
+    metric: [euclidean,manhattan]
+    run_groups:
+      K:
+        query_args: [[10,50,100,300,400,500,1000,2000,2500,3000]]
+      n_trees:
+        query_args: [[10,100, 200, 400, 1000, 2000, 4000, 10000, 20000, 40000, 100000,200000, 400000]]
+
+  - name: faiss
+    library: annoy
+    metric: [l2]
+    run_groups:
+      K:
+        query_args: [[10,50,100,300,400,500,1000,2000,2500,3000]]
+
+  - name: rpforest
+    library: rpforest
+    run_groups:
+      K:
+        query_args: [[10,50,100,300,400,500,1000,2000,2500,3000]]
+
+  - name: nearpy
+    library: nearpy
+    metric: [euclidean]
+    run_groups:
+      K:
+        query_args: [[10,50,100,300,400,500,1000,2000,2500,3000]]
+
